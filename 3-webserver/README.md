@@ -22,4 +22,4 @@ curl localhost:8000?name=charlie
 - Create some simple validation for the name parameter with the following rules
     1. Check the name is present. Return an error message informing the client if not 
     2. The name must greater the one character long
-- Create a seperate function which handles the sending of the response and supports multiple status codes to be passed in
+- Create a separate function which handles the sending of the response and supports multiple status codes to be passed in

@@ -26,9 +26,14 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	httpCode := 200
 	result := fmt.Sprintf("%s %s", "hello", name)
 
-	if name == "" {
+	switch {
+	case name == "":
 		httpCode = 400
 		result = "Please provide your name by appending '?name' param e.g '?name=Salman'"
+
+	case len(name) < 2:
+		httpCode = 400
+		result = "Name must be longer than 1 character"
 	}
 
 	// We use the standard libraries WriteString function to write back to the ResponseWriter interface
@@ -49,8 +54,6 @@ func hello(w http.ResponseWriter, r *http.Request) {
 
 	// Write the response
 	w.Write(json)
-
-	//io.WriteString(w, fmt.Sprintf("%s %s", "hello", r.FormValue("name")))
 }
 
 func main() {
